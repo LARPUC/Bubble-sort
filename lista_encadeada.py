@@ -106,13 +106,9 @@ class ListaEncadeada:
                 atual = atual.proximo
             
             passou_limite = atual
-
-# ==========================================
-# TESTES DIRETOS (Roda direto ao executar)
-# ==========================================
-print("========================================")
-print("=== TESTE 1: Lista com Valores Aleatórios ===")
-print("========================================")
+            
+#Testes
+print("TESTE 1: Lista com Valores Aleatórios")
 lista_aleatoria = ListaEncadeada()
 valores_1 = [42, 7, 19, 3, 55, 22, 11]
 for v in valores_1:
@@ -121,14 +117,15 @@ for v in valores_1:
 print("Lista original:")
 lista_aleatoria.imprimir_lista()
 
-lista_aleatoria.bubble_sort()
+print("Realizando trocas (Passo a passo):")
+lista_aleatoria.bubble_sort(visualizar=True)
+
 print("Lista ordenada (Bubble Sort):")
 lista_aleatoria.imprimir_lista()
 print(f"Tamanho da lista: {lista_aleatoria.tamanho_lista()}\n")
 
-print("========================================")
-print("=== TESTE 2: Lista Quase Ordenada ===")
-print("========================================")
+
+print("TESTE 2: Lista Quase Ordenada")
 lista_quase = ListaEncadeada()
 valores_2 = [2, 3, 5, 4, 6, 8, 7, 10]
 for v in valores_2:
@@ -143,9 +140,8 @@ print("Lista ordenada (Bubble Sort):")
 lista_quase.imprimir_lista()
 print(f"Tamanho da lista: {lista_quase.tamanho_lista()}\n")
 
-print("========================================")
-print("=== TESTE 3: Lista em Ordem Inversa ===")
-print("========================================")
+
+print("TESTE 3: Lista em Ordem Inversa")
 lista_inversa = ListaEncadeada()
 valores_3 = [50, 40, 30, 20, 10, 5]
 for v in valores_3:
@@ -154,9 +150,7 @@ for v in valores_3:
 print("Lista original:")
 lista_inversa.imprimir_lista()
 
-print("Realizando trocas (Passo a passo):")
-# É AQUI QUE A MÁGICA ACONTECE:
-lista_inversa.bubble_sort(visualizar=True)
+lista_inversa.bubble_sort()
 
 print("Lista ordenada (Bubble Sort):")
 lista_inversa.imprimir_lista()
