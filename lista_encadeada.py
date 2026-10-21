@@ -1,3 +1,4 @@
+#Lista encadeada
 class No:
     def __init__(self, valor):  # para armazenar o valor dentro do objeto
         self.valor = valor
@@ -55,10 +56,13 @@ class ListaEncadeada:
 
     def imprimir_lista(self):
         atual = self.inicio
-
+        valores = []
+        
         while atual is not None:
-            print(atual.valor)
+            valores.append(atual.valor)
             atual = atual.proximo
+            
+        print(valores)
 
     def busca_lista(self, valor):
         atual = self.inicio
@@ -80,9 +84,8 @@ class ListaEncadeada:
             atual = atual.proximo
 
         return contador
-    
-    def bubble_sort(self):
-        if not self.head or not self.head.next:
+    def bubble_sort(self, visualizar=False):
+        if not self.inicio or not self.inicio.proximo:
             return
 
         passou_limite = None
@@ -90,13 +93,71 @@ class ListaEncadeada:
 
         while trocou:
             trocou = False
-            atual = self.head
+            atual = self.inicio
 
-            while atual.next != passou_limite:
-                if atual.data > atual.next.data:
-                    atual.data, atual.next.data = atual.next.data, atual.data
+            while atual.proximo != passou_limite:
+                if atual.valor > atual.proximo.valor:
+                    atual.valor, atual.proximo.valor = atual.proximo.valor, atual.valor
                     trocou = True
+                    # Se visualizar for True, imprime a lista na tela logo após a troca
+                    if visualizar:
+                        self.imprimir_lista()
                 
-                atual = atual.next
+                atual = atual.proximo
             
             passou_limite = atual
+
+# ==========================================
+# TESTES DIRETOS (Roda direto ao executar)
+# ==========================================
+print("========================================")
+print("=== TESTE 1: Lista com Valores Aleatórios ===")
+print("========================================")
+lista_aleatoria = ListaEncadeada()
+valores_1 = [42, 7, 19, 3, 55, 22, 11]
+for v in valores_1:
+    lista_aleatoria.inserir_final(v)
+
+print("Lista original:")
+lista_aleatoria.imprimir_lista()
+
+lista_aleatoria.bubble_sort()
+print("Lista ordenada (Bubble Sort):")
+lista_aleatoria.imprimir_lista()
+print(f"Tamanho da lista: {lista_aleatoria.tamanho_lista()}\n")
+
+print("========================================")
+print("=== TESTE 2: Lista Quase Ordenada ===")
+print("========================================")
+lista_quase = ListaEncadeada()
+valores_2 = [2, 3, 5, 4, 6, 8, 7, 10]
+for v in valores_2:
+    lista_quase.inserir_final(v)
+
+print("Lista original:")
+lista_quase.imprimir_lista()
+
+lista_quase.bubble_sort()
+
+print("Lista ordenada (Bubble Sort):")
+lista_quase.imprimir_lista()
+print(f"Tamanho da lista: {lista_quase.tamanho_lista()}\n")
+
+print("========================================")
+print("=== TESTE 3: Lista em Ordem Inversa ===")
+print("========================================")
+lista_inversa = ListaEncadeada()
+valores_3 = [50, 40, 30, 20, 10, 5]
+for v in valores_3:
+    lista_inversa.inserir_final(v)
+
+print("Lista original:")
+lista_inversa.imprimir_lista()
+
+print("Realizando trocas (Passo a passo):")
+# É AQUI QUE A MÁGICA ACONTECE:
+lista_inversa.bubble_sort(visualizar=True)
+
+print("Lista ordenada (Bubble Sort):")
+lista_inversa.imprimir_lista()
+print(f"Tamanho da lista: {lista_inversa.tamanho_lista()}")
