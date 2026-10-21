@@ -80,3 +80,23 @@ class ListaEncadeada:
             atual = atual.proximo
 
         return contador
+    
+    def bubble_sort(self):
+        if not self.head or not self.head.next:
+            return
+
+        passou_limite = None
+        trocou = True
+
+        while trocou:
+            trocou = False
+            atual = self.head
+
+            while atual.next != passou_limite:
+                if atual.data > atual.next.data:
+                    atual.data, atual.next.data = atual.next.data, atual.data
+                    trocou = True
+                
+                atual = atual.next
+            
+            passou_limite = atual
